@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mobile Controller</string>
+
+    <!-- Indicateur de connexion -->
+    <string name="status_connected">Connecté : %1$s</string>
+    <string name="status_waiting">En attente du MIDI USB…</string>
+    <string name="status_error_open">Impossible d’ouvrir le port MIDI</string>
+    <string name="status_error_unsupported">Ce téléphone ne gère pas le MIDI</string>
+    <string name="hint_no_port">Aucun port MIDI détecté : branchez un câble USB de données (pas un câble de charge seule), puis choisissez « MIDI » dans la notification USB.</string>
+
+    <!-- États des switches -->
+    <string name="state_slow">Lent</string>
+    <string name="state_fast">Rapide</string>
+    <string name="state_off">Désactivé</string>
+    <string name="state_on">Activé</string>
+    <string name="switch_state_format">%1$s : %2$s</string>
+
+    <!-- Navigation -->
+    <string name="open_settings">Réglages</string>
+    <string name="back">Retour</string>
+
+    <!-- Réglages -->
+    <string name="settings_title">Réglages</string>
+    <string name="settings_midi_channel">Canal MIDI</string>
+    <string name="settings_connection">Connexion</string>
+    <string name="settings_usb_cable">Câble USB : %1$s</string>
+    <string name="settings_usb_midi">Mode USB MIDI : %1$s</string>
+    <string name="detected">détecté</string>
+    <string name="not_detected">non détecté</string>
+    <string name="settings_rescan">Chercher à nouveau</string>
+    <string name="settings_help">Si l’indicateur reste orange : utilisez un câble USB de données (un câble de charge seule ne transporte aucune donnée), déverrouillez le téléphone et choisissez « MIDI » dans la notification « Utiliser l’USB pour ». Un seul logiciel à la fois peut utiliser le port MIDI du téléphone.</string>
+    <string name="settings_language">Langue</string>
+    <string name="settings_language_value">Suit la langue du système (English / Français)</string>
+
+    <!-- Assistant de première mise en route -->
+    <string name="onboarding_title">Mise en route</string>
+    <string name="onboarding_step1">Branchez le câble USB entre le téléphone et l’ordinateur</string>
+    <string name="onboarding_step2">Choisissez « MIDI » dans la notification « Utiliser l’USB pour »</string>
+    <string name="onboarding_step3">Mobile Controller trouve le port MIDI</string>
+    <string name="onboarding_skip">Passer</string>
+</resources>

@@ -1,71 +1,47 @@
 package io.github.kimbohy.mobilecontroller
 
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Slider
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import io.github.kimbohy.mobilecontroller.core.MidiEngine
-import io.github.kimbohy.mobilecontroller.midi.UsbMidiTransport
-import kotlin.math.roundToInt
+import androidx.activity.viewModels
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
+import io.github.kimbohy.mobilecontroller.ui.MainViewModel
 
-/** ÉCRAN DE TEST TEMPORAIRE (remplacé à la phase 3). */
 class MainActivity : ComponentActivity() {
-    private lateinit var transport: UsbMidiTransport
-    private lateinit var engine: MidiEngine
+
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        transport = UsbMidiTransport(this)
-        engine = MidiEngine(transport)
-        transport.start()
-        setContent {
-            MaterialTheme(colorScheme = darkColorScheme()) {
-                Surface(Modifier.fillMaxSize()) { DebugScreen(transport, engine) }
-            }
-        }
+        // Écran toujours allumé tant que l'app est au premier plan.
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        setContent { MobileControllerApp(viewModel) }
     }
 
     override fun onStart() {
         super.onStart()
-        transport.rescan()
+        viewModel.onAppForeground()
     }
 
-    override fun onDestroy() {
-        transport.stop()
-        super.onDestroy()
+    override fun onStop() {
+        viewModel.saveNow()
+        super.onStop()
     }
-}
 
-@Composable
-private fun DebugScreen(transport: UsbMidiTransport, engine: MidiEngine) {
-    val state by transport.state.collectAsState()
-    var value by remember { mutableFloatStateOf(0f) }
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) hideSystemBars()
+    }
 
-    Column(Modifier.fillMaxSize().padding(24.dp)) {
-        Text("État : $state")
-        Slider(
-            value = value,
-            onValueChange = {
-                value = it
-                engine.sendControlChange(cc = 20, value = it.roundToInt())
-            },
-            valueRange = 0f..127f,
-        )
-        Text("CC 20 = ${value.roundToInt()}")
+    /** Plein écran immersif : les barres système réapparaissent brièvement sur un balayage du bord. */
+    private fun hideSystemBars() {
+        val controller = WindowInsetsControllerCompat(window, window.decorView)
+        controller.systemBarsBehavior =
+            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        controller.hide(WindowInsetsCompat.Type.systemBars())
     }
 }
