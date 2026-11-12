@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["mobilecontroller"]
+  "cSpell.words": ["mobilecontroller"],
+  "java.configuration.updateBuildConfiguration": "interactive"
 }
