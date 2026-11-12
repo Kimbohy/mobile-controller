@@ -1,4 +1,4 @@
-package com.example.mobilecontroller.ui.theme
+package io.github.kimbohy.mobilecontroller.ui.theme
 
 import android.app.Activity
 import android.os.Build

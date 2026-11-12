@@ -1,4 +1,4 @@
-package com.example.mobilecontroller
+package io.github.kimbohy.mobilecontroller
 
 import org.junit.Test
 

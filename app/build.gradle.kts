@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mobilecontroller"
+    namespace = "io.github.kimbohy.mobilecontroller"
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "com.example.mobilecontroller"
+        applicationId = "io.github.kimbohy.mobilecontroller"
         minSdk = 23
         targetSdk = 37
         versionCode = 1

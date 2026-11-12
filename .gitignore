@@ -23,3 +23,5 @@ keystore.properties
 .kotlin/
 *.apk
 *.aab
+
+docs/info.md

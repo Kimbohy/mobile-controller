@@ -1,4 +1,4 @@
-package com.example.mobilecontroller.ui.theme
+package io.github.kimbohy.mobilecontroller.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
