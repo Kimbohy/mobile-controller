@@ -2,6 +2,8 @@ package io.github.kimbohy.mobilecontroller.data
 
 import io.github.kimbohy.mobilecontroller.model.AppJson
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.jsonObject
 import java.io.File
 import java.io.IOException
 
@@ -9,11 +11,18 @@ import java.io.IOException
 class JsonFileStore<T>(
     private val file: File,
     private val serializer: KSerializer<T>,
+    /** Adapte un ancien fichier au format courant avant le décodage. */
+    private val migrate: (JsonObject) -> JsonObject = { it },
     private val defaultValue: () -> T,
 ) {
     /** Fichier absent ou illisible → valeur par défaut (on ne plante jamais au démarrage). */
     fun load(): T = try {
-        if (file.exists()) AppJson.decodeFromString(serializer, file.readText()) else defaultValue()
+        if (file.exists()) {
+            val root = AppJson.parseToJsonElement(file.readText()).jsonObject
+            AppJson.decodeFromJsonElement(serializer, migrate(root))
+        } else {
+            defaultValue()
+        }
     } catch (e: Exception) {
         defaultValue()
     }
