@@ -35,6 +35,7 @@ fun SettingsScreen(
     onRescan: () -> Unit,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
+    onOpenMapping: () -> Unit = {},
 ) {
     Column(
         modifier = modifier
@@ -75,6 +76,11 @@ fun SettingsScreen(
                 enabled = settings.midiChannel < 16,
                 modifier = Modifier.testTag("channel_plus"),
             ) { Text("+", fontSize = 20.sp) }
+        }
+
+        // --- Mapping MIDI (v1.1) ---
+        Button(onClick = onOpenMapping, modifier = Modifier.testTag("open_mapping")) {
+            Text(stringResource(R.string.settings_mapping))
         }
 
         // --- Connexion détaillée ---

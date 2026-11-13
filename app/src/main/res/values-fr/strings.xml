@@ -39,4 +39,17 @@
     <string name="onboarding_step2">Choisissez « MIDI » dans la notification « Utiliser l’USB pour »</string>
     <string name="onboarding_step3">Mobile Controller trouve le port MIDI</string>
     <string name="onboarding_skip">Passer</string>
+
+    <!-- v1.1 -->
+    <string name="sync">Sync</string>
+    <string name="sync_description">Renvoyer toutes les valeurs au synthé</string>
+    <string name="lock_description">Verrouillage tactile (appui long)</string>
+    <string name="preset_description">Preset %1$d. Toucher pour rappeler, appui long pour sauvegarder</string>
+    <string name="settings_mapping">Mapping MIDI…</string>
+    <string name="mapping_title">Mapping MIDI</string>
+    <string name="mapping_profile">Profil</string>
+    <string name="mapping_invert">Inverser les tirettes (valeur 0 = le plus fort)</string>
+    <string name="mapping_controls">Numéros de CC</string>
+    <string name="mapping_reset">Revenir au profil</string>
+    <string name="mapping_sync_hint">Après un changement de mapping, appuyez sur Sync sur l’écran principal pour renvoyer toutes les valeurs.</string>
 </resources>
