@@ -20,7 +20,10 @@ Puis, une seule fois dans votre VST ou DAW, utilisez le **MIDI Learn** : bougez 
 
 ## Mapping CC par défaut
 
-Voir [docs/mapping-cc.md](docs/mapping-cc.md) (tirettes 16'…1' = CC 20–28, Leslie 29, Vibrato 30, Percussion 31, Volume 11).
+Le mapping par défaut suit les orgues **Hammond XK-3c / IK B-3X** (tirettes CC 12–20, Leslie CC 1,
+percussion CC 36, vibrato CC 40, volume CC 11). Des profils sont intégrés pour **Native Instruments B4 / EVB3**
+et **setBfree** (tirettes inversées incluses) ; chaque CC reste modifiable dans Réglages → Mapping MIDI.
+Détails et sources : [docs/mapping-cc.md](docs/mapping-cc.md).
 
 ## Compatibilité testée
 
