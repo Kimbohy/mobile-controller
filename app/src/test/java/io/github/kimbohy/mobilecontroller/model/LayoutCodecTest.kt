@@ -24,10 +24,10 @@ class LayoutCodecTest {
     fun built_in_layout_follows_the_default_cc_mapping() {
         val byId = builtIn().controls.associateBy { it.id }
         val drawbarIds = listOf("db16", "db513", "db8", "db4", "db223", "db2", "db135", "db113", "db1")
-        drawbarIds.forEachIndexed { index, id -> assertEquals(20 + index, byId.getValue(id).cc) }
-        assertEquals(29, byId.getValue("leslie").cc)
-        assertEquals(30, byId.getValue("vibrato").cc)
-        assertEquals(31, byId.getValue("percussion").cc)
+        drawbarIds.forEachIndexed { index, id -> assertEquals(12 + index, byId.getValue(id).cc) }
+        assertEquals(1, byId.getValue("leslie").cc)
+        assertEquals(40, byId.getValue("vibrato").cc)
+        assertEquals(36, byId.getValue("percussion").cc)
         assertEquals(11, byId.getValue("volume").cc)
     }
 

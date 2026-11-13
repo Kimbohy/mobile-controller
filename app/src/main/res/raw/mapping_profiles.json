@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "profiles": [
+    {
+      "id": "hammond-b3x",
+      "name": "Hammond XK-3c / IK B-3X",
+      "invertDrawbars": false,
+      "controls": {
+        "db16": { "cc": 12 },
+        "db513": { "cc": 13 },
+        "db8": { "cc": 14 },
+        "db4": { "cc": 15 },
+        "db223": { "cc": 16 },
+        "db2": { "cc": 17 },
+        "db135": { "cc": 18 },
+        "db113": { "cc": 19 },
+        "db1": { "cc": 20 },
+        "leslie": { "cc": 1 },
+        "vibrato": { "cc": 40 },
+        "percussion": { "cc": 36 },
+        "volume": { "cc": 11 }
+      }
+    },
+    {
+      "id": "ni-b4",
+      "name": "Native Instruments B4 / EVB3 (NI)",
+      "invertDrawbars": false,
+      "controls": {
+        "db16": { "cc": 12 },
+        "db513": { "cc": 13 },
+        "db8": { "cc": 14 },
+        "db4": { "cc": 15 },
+        "db223": { "cc": 16 },
+        "db2": { "cc": 17 },
+        "db135": { "cc": 18 },
+        "db113": { "cc": 19 },
+        "db1": { "cc": 20 },
+        "leslie": { "cc": 1 },
+        "vibrato": { "cc": 31 },
+        "percussion": { "cc": 66 },
+        "volume": { "cc": 11 }
+      }
+    },
+    {
+      "id": "setbfree",
+      "name": "setBfree",
+      "invertDrawbars": true,
+      "controls": {
+        "db16": { "cc": 70 },
+        "db513": { "cc": 71 },
+        "db8": { "cc": 72 },
+        "db4": { "cc": 73 },
+        "db223": { "cc": 74 },
+        "db2": { "cc": 75 },
+        "db135": { "cc": 76 },
+        "db113": { "cc": 77 },
+        "db1": { "cc": 78 },
+        "leslie": { "cc": 91, "offValue": 64, "onValue": 127 },
+        "vibrato": { "cc": 92 },
+        "percussion": { "cc": 80, "onValue": 32 },
+        "volume": { "cc": 11 }
+      }
+    },
+    {
+      "id": "legacy-1.0",
+      "name": "Mobile Controller 1.0 (CC 20–31)",
+      "invertDrawbars": false,
+      "controls": {
+        "db16": { "cc": 20 },
+        "db513": { "cc": 21 },
+        "db8": { "cc": 22 },
+        "db4": { "cc": 23 },
+        "db223": { "cc": 24 },
+        "db2": { "cc": 25 },
+        "db135": { "cc": 26 },
+        "db113": { "cc": 27 },
+        "db1": { "cc": 28 },
+        "leslie": { "cc": 29 },
+        "vibrato": { "cc": 30 },
+        "percussion": { "cc": 31 },
+        "volume": { "cc": 11 }
+      }
+    }
+  ]
+}
