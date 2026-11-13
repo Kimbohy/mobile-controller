@@ -22,6 +22,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
@@ -39,6 +40,7 @@ import androidx.compose.ui.unit.sp
 import io.github.kimbohy.mobilecontroller.core.ValueQuantizer
 
 private val KnobHeight = 56.dp
+private const val DISABLED_ALPHA = 0.4f
 
 /** Couleur d'une tirette, comme sur un orgue Hammond (F2). */
 fun drawbarColor(name: String?): Color = when (name) {
@@ -51,6 +53,7 @@ fun drawbarColor(name: String?): Color = when (name) {
 /**
  * Tirette verticale (ou fader de volume) : valeur MIDI 0..127.
  * Ne stocke AUCUN état de valeur : elle affiche [value] et signale les changements.
+ * Avec [enabled] = false (verrou tactile) elle ignore tous les touchers et s'affiche grisée.
  */
 @Composable
 fun Fader(
@@ -60,6 +63,7 @@ fun Fader(
     onValueChange: (Int) -> Unit,
     testTag: String,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
 ) {
     val currentValue by rememberUpdatedState(value)
     val currentOnChange by rememberUpdatedState(onValueChange)
@@ -69,7 +73,10 @@ fun Fader(
     val outline = Color(0xFF9AA0A6)
     val grip = if (knobColor.luminance() > 0.5f) Color.Black.copy(alpha = 0.45f) else Color.White.copy(alpha = 0.55f)
 
-    Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(
+        modifier = modifier.alpha(if (enabled) 1f else DISABLED_ALPHA),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
         Text(
             text = label,
             fontSize = 16.sp,
@@ -83,7 +90,8 @@ fun Fader(
                 .fillMaxWidth()
                 .testTag(testTag)
                 .semantics { contentDescription = label }
-                .pointerInput(Unit) {
+                .pointerInput(enabled) {
+                    if (!enabled) return@pointerInput // verrouillé : on n'écoute rien
                     val knobHeightPx = KnobHeight.toPx()
                     awaitEachGesture {
                         val down = awaitFirstDown(requireUnconsumed = false)
@@ -157,6 +165,7 @@ fun SwitchButton(
     onToggle: () -> Unit,
     testTag: String,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
 ) {
     val currentOnToggle by rememberUpdatedState(onToggle)
     val shape = RoundedCornerShape(12.dp)
@@ -165,13 +174,15 @@ fun SwitchButton(
 
     Column(
         modifier = modifier
+            .alpha(if (enabled) 1f else DISABLED_ALPHA)
             .heightIn(min = 56.dp)
             .clip(shape)
             .background(background)
             .border(2.dp, MaterialTheme.colorScheme.outline, shape)
             .testTag(testTag)
             .semantics { contentDescription = text }
-            .pointerInput(Unit) {
+            .pointerInput(enabled) {
+                if (!enabled) return@pointerInput // verrouillé : on n'écoute rien
                 awaitEachGesture {
                     val down = awaitFirstDown(requireUnconsumed = false)
                     down.consume()
