@@ -4,7 +4,7 @@ Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) ; ve
 
 ## [Non publié]
 
-## [1.1.0] — (date de la release)
+## [1.1.0] — 2026-12-13
 
 ### Ajouté
 
@@ -22,7 +22,7 @@ Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) ; ve
   pour ne pas casser un MIDI Learn déjà fait. Le nouveau défaut se choisit dans Réglages → Mapping MIDI.
 - Barre du haut : la phrase d'aide « aucun port MIDI » s'affiche sous la barre.
 
-## [1.0.0] — (date de la release)
+## [1.0.0] — 2026-12-12
 
 ### Ajouté
 
